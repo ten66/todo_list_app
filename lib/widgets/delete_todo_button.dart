@@ -14,6 +14,7 @@ class DeleteTodoButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return IconButton(
       icon: const FaIcon(FontAwesomeIcons.trashCan),
+      color: Theme.of(context).colorScheme.onBackground,
       onPressed: () => showCupertinoDialog(
         context: context,
         barrierDismissible: false,
@@ -23,20 +24,20 @@ class DeleteTodoButton extends StatelessWidget {
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(context),
-              child: const Text(
+              child: Text(
                 'キャンセル',
                 style: TextStyle(
-                  color: Color(0xFF94A684),
+                  color: Theme.of(context).colorScheme.secondary,
                   fontWeight: FontWeight.bold,
                 ),
               ),
             ),
             TextButton(
               onPressed: onPressed,
-              child: const Text(
+              child: Text(
                 '削除',
                 style: TextStyle(
-                  color: Color(0xFF94A684),
+                  color: Theme.of(context).colorScheme.secondary,
                   fontWeight: FontWeight.bold,
                 ),
               ),
