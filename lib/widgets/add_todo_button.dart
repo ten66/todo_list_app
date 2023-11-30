@@ -14,7 +14,7 @@ class AddTodoButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton(
-      backgroundColor: const Color(0xFF94A684),
+      backgroundColor: Theme.of(context).colorScheme.secondary,
       shape: const CircleBorder(),
       onPressed: () => showCupertinoDialog(
         context: context,
@@ -26,7 +26,7 @@ class AddTodoButton extends StatelessWidget {
             child: CupertinoTextField(
               controller: controller,
               placeholder: 'タイトル',
-              cursorColor: const Color(0xFF94A684),
+              cursorColor: Theme.of(context).colorScheme.secondary,
               maxLength: 100,
             ),
           ),
@@ -35,20 +35,20 @@ class AddTodoButton extends StatelessWidget {
               onPressed: () {
                 Navigator.pop(context);
               },
-              child: const Text(
+              child: Text(
                 'キャンセル',
                 style: TextStyle(
-                  color: Color(0xFF94A684),
+                  color: Theme.of(context).colorScheme.secondary,
                   fontWeight: FontWeight.bold,
                 ),
               ),
             ),
             TextButton(
               onPressed: onAdd,
-              child: const Text(
+              child: Text(
                 '追加',
                 style: TextStyle(
-                  color: Color(0xFF94A684),
+                  color: Theme.of(context).colorScheme.secondary,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -57,7 +57,10 @@ class AddTodoButton extends StatelessWidget {
         ),
       ),
       tooltip: 'add todo',
-      child: const Icon(Icons.add),
+      child: Icon(
+        Icons.add,
+        color: Theme.of(context).colorScheme.onSecondary,
+      ),
     );
   }
 }
