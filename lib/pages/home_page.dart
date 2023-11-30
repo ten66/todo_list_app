@@ -79,11 +79,12 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFE4E4D0),
+      backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
-        backgroundColor: const Color(0xFFE4E4D0),
+        backgroundColor: Theme.of(context).colorScheme.background,
         leading: IconButton(
           icon: const Icon(Icons.menu),
+          color: Theme.of(context).colorScheme.onBackground,
           onPressed: () {
             Navigator.of(context).push(
               MaterialPageRoute(
