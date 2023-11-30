@@ -43,7 +43,7 @@ class TodoListView extends StatelessWidget {
                 maxLines: 3,
                 style: TextStyle(
                   color: Theme.of(context).colorScheme.onPrimary,
-                  fontSize: 18,
+                  fontSize: 16,
                   decoration: todoList[index][2]
                       ? TextDecoration.lineThrough
                       : TextDecoration.none,

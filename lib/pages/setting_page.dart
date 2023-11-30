@@ -8,9 +8,9 @@ class SettingsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFE4E4D0),
+      backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
-        backgroundColor: const Color(0xFFE4E4D0),
+        backgroundColor: Theme.of(context).colorScheme.background,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios),
           onPressed: () => Navigator.pop(context),
@@ -83,9 +83,22 @@ class _CustomListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      title: Text(title),
-      leading: Icon(icon),
-      trailing: const Icon(CupertinoIcons.forward, size: 18),
+      title: Text(
+        title,
+        style: TextStyle(
+          fontSize: 16,
+          color: Theme.of(context).colorScheme.onPrimary,
+        ),
+      ),
+      leading: Icon(
+        icon,
+        color: Theme.of(context).colorScheme.onPrimary,
+      ),
+      trailing: Icon(
+        CupertinoIcons.forward,
+        size: 18,
+        color: Theme.of(context).colorScheme.onPrimary,
+      ),
       onTap: () => launchUrl(url),
     );
   }
@@ -111,16 +124,20 @@ class _SingleSection extends StatelessWidget {
           padding: const EdgeInsets.all(8.0),
           child: Text(
             title,
-            style: Theme.of(context)
-                .textTheme
-                .displaySmall
-                ?.copyWith(fontSize: 16),
+            // style: Theme.of(context)
+            //     .textTheme
+            //     .displaySmall
+            //     ?.copyWith(fontSize: 16),
+            style: TextStyle(
+              fontSize: 16,
+              color: Theme.of(context).colorScheme.onPrimary,
+            ),
           ),
         ),
         Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
-            color: const Color(0xFFAEC3AE),
+            color: Theme.of(context).colorScheme.primary,
           ),
           width: double.infinity,
           child: Column(
