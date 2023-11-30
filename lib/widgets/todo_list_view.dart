@@ -29,24 +29,26 @@ class TodoListView extends StatelessWidget {
           itemCount: todoList.length,
           itemBuilder: (context, index) => Card(
             key: ValueKey(todoList[index]),
-            color: const Color(0xFFAEC3AE),
+            color: Theme.of(context).colorScheme.primary,
             child: ListTile(
               leading: Checkbox(
                 value: todoList[index][2],
                 onChanged: (value) => onChanged(value, index),
-                activeColor: const Color(0xFFFDE4ED),
-                checkColor: const Color(0xFFAEC3AE),
+                activeColor: Theme.of(context).colorScheme.surface,
+                checkColor: Theme.of(context).colorScheme.secondary,
               ),
               title: Text(
                 todoList[index][1],
                 overflow: TextOverflow.ellipsis,
                 maxLines: 3,
                 style: TextStyle(
+                  color: Theme.of(context).colorScheme.onPrimary,
                   fontSize: 18,
                   decoration: todoList[index][2]
                       ? TextDecoration.lineThrough
                       : TextDecoration.none,
-                  decorationThickness: 1.8,
+                  decorationThickness: 2,
+                  decorationColor: Theme.of(context).colorScheme.onPrimary,
                 ),
               ),
             ),
