@@ -28,6 +28,9 @@ class AddTodoButton extends StatelessWidget {
               placeholder: 'タイトル',
               cursorColor: Theme.of(context).colorScheme.secondary,
               maxLength: 100,
+              style: TextStyle(
+                color: Theme.of(context).colorScheme.onSecondary,
+              ),
             ),
           ),
           actions: [
