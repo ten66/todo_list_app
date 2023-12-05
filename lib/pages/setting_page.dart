@@ -27,15 +27,24 @@ class SettingsPage extends StatelessWidget {
                     constraints: const BoxConstraints(maxWidth: 400),
                     child: ListView(
                       physics: const NeverScrollableScrollPhysics(),
-                      children: [
+                      children: const [
+                        _SingleSection(
+                          title: "設定",
+                          children: [
+                            _CustomListTile(
+                              title: "テーマカラー",
+                              icon: CupertinoIcons.paintbrush,
+                              url: '',
+                            ),
+                          ],
+                        ),
                         _SingleSection(
                           title: "コンタクト",
                           children: [
                             _CustomListTile(
                               title: "お問い合わせ",
                               icon: CupertinoIcons.envelope,
-                              url: Uri.parse(
-                                  'https://forms.gle/TTZCuFavsyzaWHaH6'),
+                              url: 'https://forms.gle/TTZCuFavsyzaWHaH6',
                             ),
                           ],
                         ),
@@ -45,14 +54,13 @@ class SettingsPage extends StatelessWidget {
                             _CustomListTile(
                               title: "利用規約",
                               icon: CupertinoIcons.text_justify,
-                              url: Uri.parse(
-                                  'https://sites.google.com/view/simpletodo-terms-of-use/%E3%83%9B%E3%83%BC%E3%83%A0'),
+                              url:
+                                  'https://sites.google.com/view/simpletodo-terms-of-use/%E3%83%9B%E3%83%BC%E3%83%A0',
                             ),
                             _CustomListTile(
                               title: "プライバシーポリシー",
                               icon: CupertinoIcons.lock,
-                              url: Uri.parse(
-                                  'https://forms.gle/TTZCuFavsyzaWHaH6'),
+                              url: 'https://forms.gle/TTZCuFavsyzaWHaH6',
                             ),
                           ],
                         ),
@@ -72,7 +80,7 @@ class SettingsPage extends StatelessWidget {
 class _CustomListTile extends StatelessWidget {
   final String title;
   final IconData icon;
-  final Uri url;
+  final String url;
   const _CustomListTile({
     Key? key,
     required this.title,
@@ -99,7 +107,7 @@ class _CustomListTile extends StatelessWidget {
         size: 18,
         color: Theme.of(context).colorScheme.onPrimary,
       ),
-      onTap: () => launchUrl(url),
+      onTap: url != '' ? () => launchUrl(Uri.parse(url)) : () {},
     );
   }
 }
