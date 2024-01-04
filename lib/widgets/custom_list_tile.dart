@@ -6,13 +6,11 @@ class CustomListTile extends StatelessWidget {
   final String title;
   final IconData icon;
   final String url;
-  final void Function()? navigator;
   const CustomListTile({
     super.key,
     required this.title,
     required this.icon,
     required this.url,
-    this.navigator,
   });
 
   @override
@@ -34,7 +32,7 @@ class CustomListTile extends StatelessWidget {
         size: 18,
         color: Theme.of(context).colorScheme.onPrimary,
       ),
-      onTap: url != '' ? () => launchUrl(Uri.parse(url)) : navigator,
+      onTap: url != '' ? () => launchUrl(Uri.parse(url)) : () {},
     );
   }
 }

@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:todo_list_app/pages/theme_setting_page.dart';
 import 'package:todo_list_app/widgets/custom_list_tile.dart';
 import 'package:todo_list_app/widgets/single_section.dart';
 
@@ -29,26 +28,8 @@ class SettingPage extends StatelessWidget {
                     constraints: const BoxConstraints(maxWidth: 400),
                     child: ListView(
                       physics: const NeverScrollableScrollPhysics(),
-                      children: [
+                      children: const [
                         SingleSection(
-                          title: "設定",
-                          children: [
-                            CustomListTile(
-                              title: 'テーマカラー',
-                              icon: CupertinoIcons.paintbrush,
-                              url: '',
-                              navigator: () {
-                                Navigator.of(context).push(
-                                  MaterialPageRoute(
-                                    builder: (context) =>
-                                        const ThemeSettingPage(),
-                                  ),
-                                );
-                              },
-                            ),
-                          ],
-                        ),
-                        const SingleSection(
                           title: "コンタクト",
                           children: [
                             CustomListTile(
@@ -58,7 +39,7 @@ class SettingPage extends StatelessWidget {
                             ),
                           ],
                         ),
-                        const SingleSection(
+                        SingleSection(
                           title: "その他",
                           children: [
                             CustomListTile(
