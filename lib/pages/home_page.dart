@@ -26,7 +26,7 @@ class _HomePageState extends State<HomePage> {
       todoList = [
         [uuid.v4(), '右下のボタンからToDoの追加ができます。', false],
         [uuid.v4(), '長押しでToDoの移動ができます。', false],
-        [uuid.v4(), '完了したToDoは左上のボタンからまとめて削除できます。', false]
+        [uuid.v4(), '完了したToDoは右上のボタンからまとめて削除できます。', false]
       ];
     } else {
       todoList = _myBox.get('TODOLIST');
