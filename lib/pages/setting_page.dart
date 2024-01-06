@@ -51,7 +51,8 @@ class SettingPage extends StatelessWidget {
                             CustomListTile(
                               title: "プライバシーポリシー",
                               icon: CupertinoIcons.lock,
-                              url: 'https://forms.gle/TTZCuFavsyzaWHaH6',
+                              url:
+                                  'https://sites.google.com/view/simpletodo-privacy-policy/%E3%83%9B%E3%83%BC%E3%83%A0',
                             ),
                           ],
                         ),
