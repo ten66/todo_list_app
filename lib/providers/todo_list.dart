@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:uuid/uuid.dart';
@@ -32,5 +31,38 @@ class TodoList extends Notifier<List<List>> {
     } else {
       _box.put('TODOLIST', state);
     }
+  }
+
+  void add(String title) {
+    state = [
+      ...state,
+      [_uuid.v4(), title, false],
+    ];
+    saveToHive();
+  }
+
+  void toggle(bool value, int index) {
+    // state = [
+    //   for(final todo in state)
+    //     if (todo[0] == )
+    // ]
+    // これでいいのか？
+    state[index][2] = value;
+    saveToHive();
+  }
+
+  void remove() {
+    // これでいいのか？
+    state = state.where((todo) => !todo[2]).toList();
+    saveToHive();
+  }
+
+  void onReorder(int oldIndex, int newIndex) {
+    var todoList = state;
+    if (oldIndex < newIndex) newIndex--;
+    final List todo = todoList.removeAt(oldIndex);
+    todoList.insert(newIndex, todo);
+    state = todoList;
+    saveToHive();
   }
 }
