@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:todo_list_app/color_scheme.dart';
+import 'package:todo_list_app/models/todo.dart';
 import 'package:todo_list_app/pages/home_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await Hive.initFlutter();
-  await Hive.openBox('todoBox');
+  Hive.registerAdapter(TodoAdapter());
+  await Hive.openBox<Todo>('todoBox');
 
   runApp(const ProviderScope(child: MyApp()));
 }
