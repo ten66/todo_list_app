@@ -1,19 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:todo_list_app/pages/setting_page.dart';
+import 'package:todo_list_app/providers/todo_list.dart';
 import 'package:todo_list_app/widgets/add_todo_button.dart';
 import 'package:todo_list_app/widgets/delete_todo_button.dart';
 import 'package:todo_list_app/widgets/todo_list_view.dart';
 import 'package:uuid/uuid.dart';
 
-class HomePage extends StatefulWidget {
+// todolistのproviderを設定
+final todoListProvider = NotifierProvider<TodoList, List<List>>(TodoList.new);
+
+// ConsumerStatefulWidgetに変更
+class HomePage extends ConsumerStatefulWidget {
   const HomePage({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  ConsumerState<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends ConsumerState<HomePage> {
   final _myBox = Hive.box('todoBox');
   List todoList = [];
 
