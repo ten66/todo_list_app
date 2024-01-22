@@ -10,9 +10,11 @@ class DeleteTodoButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final palette = Theme.of(context).colorScheme;
+
     return IconButton(
       icon: const FaIcon(FontAwesomeIcons.trashCan),
-      color: Theme.of(context).colorScheme.onBackground,
+      color: palette.onBackground,
       onPressed: () => showCupertinoDialog(
         context: context,
         barrierDismissible: false,
@@ -23,14 +25,13 @@ class DeleteTodoButton extends ConsumerWidget {
             CancelButton(),
             TextButton(
               onPressed: () {
-                final notifier = ref.read(todoListProvider.notifier);
-                notifier.remove();
+                ref.read(todoListProvider.notifier).remove();
                 Navigator.pop(context);
               },
               child: Text(
                 '削除',
                 style: TextStyle(
-                  color: Theme.of(context).colorScheme.secondary,
+                  color: palette.secondary,
                   fontWeight: FontWeight.bold,
                 ),
               ),
