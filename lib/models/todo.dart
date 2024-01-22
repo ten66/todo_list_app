@@ -8,7 +8,7 @@ class Todo extends HiveObject {
   late String id;
 
   @HiveField(1)
-  late int title;
+  late String title;
 
   @HiveField(2, defaultValue: false)
   late bool isCompleted;

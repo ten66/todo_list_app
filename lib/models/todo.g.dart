@@ -18,7 +18,7 @@ class TodoAdapter extends TypeAdapter<Todo> {
     };
     return Todo()
       ..id = fields[0] as String
-      ..title = fields[1] as int
+      ..title = fields[1] as String
       ..isCompleted = fields[2] == null ? false : fields[2] as bool;
   }
 
