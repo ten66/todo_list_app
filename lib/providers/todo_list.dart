@@ -10,27 +10,23 @@ const initTodoList = [
   ['todo-2', '完了したTODOは右上のボタンからまとめて削除できます。', false],
 ];
 
-class TodoList extends Notifier<List<List>> {
-  late Box _box;
+class TodoList extends Notifier<List<dynamic>> {
+  final _box = Hive.box('todoBox');
 
   @override
-  List<List> build() => initTodoList;
+  List<dynamic> build() => initTodoList;
 
-  // initState()でのみ実行の関数
-  void getInitTodo() {
-    state = initTodoList;
+  void getInitTodo() async {
+    if (_box.get('todoList') == null) {
+      state = await initTodoList;
+    } else {
+      state = await _box.get('todoList');
+    }
     saveToHive();
   }
 
-  // Hiveに保存する関数
-  // わざわざ毎回deleteする必要があるのか？
   void saveToHive() {
-    _box = Hive.box('todoBox');
-    if (_box.get('TODOLIST') != null) {
-      _box.delete('TODOLIST');
-    } else {
-      _box.put('TODOLIST', state);
-    }
+    _box.put('todoList', state);
   }
 
   void add(String title) {
@@ -41,24 +37,28 @@ class TodoList extends Notifier<List<List>> {
     saveToHive();
   }
 
-  void toggle(bool value, int index) {
-    // state = [
-    //   for(final todo in state)
-    //     if (todo[0] == )
-    // ]
-    // これでいいのか？
-    state[index][2] = value;
+  void toggle(String id) {
+    state = [
+      for (final todo in state)
+        if (todo[0] == id)
+          [
+            todo[0],
+            todo[1],
+            !todo[2],
+          ]
+        else
+          todo,
+    ];
     saveToHive();
   }
 
   void remove() {
-    // これでいいのか？
     state = state.where((todo) => !todo[2]).toList();
     saveToHive();
   }
 
   void onReorder(int oldIndex, int newIndex) {
-    var todoList = state;
+    var todoList = state.toList();
     if (oldIndex < newIndex) newIndex--;
     final List todo = todoList.removeAt(oldIndex);
     todoList.insert(newIndex, todo);
