@@ -11,6 +11,8 @@ class SingleSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final palette = Theme.of(context).colorScheme;
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -22,14 +24,14 @@ class SingleSection extends StatelessWidget {
             title,
             style: TextStyle(
               fontSize: 16,
-              color: Theme.of(context).colorScheme.onPrimary,
+              color: palette.onPrimary,
             ),
           ),
         ),
         Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
-            color: Theme.of(context).colorScheme.primary,
+            color: palette.primary,
           ),
           width: double.infinity,
           child: Column(

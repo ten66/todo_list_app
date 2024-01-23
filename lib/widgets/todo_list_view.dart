@@ -1,19 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:todo_list_app/pages/home_page.dart';
 
-class TodoListView extends StatelessWidget {
-  final List todoList;
-  final void Function(bool?, int) onChanged;
-  final void Function(int, int) onReorder;
-
-  const TodoListView({
-    super.key,
-    required this.todoList,
-    required this.onChanged,
-    required this.onReorder,
-  });
+class TodoListView extends ConsumerWidget {
+  const TodoListView({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final todoList = ref.watch(todoListProvider);
+    final palette = Theme.of(context).colorScheme;
+
     return Visibility(
       visible: todoList.isEmpty,
       replacement: Padding(
@@ -29,31 +25,34 @@ class TodoListView extends StatelessWidget {
           itemCount: todoList.length,
           itemBuilder: (context, index) => Card(
             key: ValueKey(todoList[index]),
-            color: Theme.of(context).colorScheme.primary,
+            color: palette.primary,
             child: ListTile(
               leading: Checkbox(
                 value: todoList[index][2],
-                onChanged: (value) => onChanged(value, index),
-                activeColor: Theme.of(context).colorScheme.surface,
-                checkColor: Theme.of(context).colorScheme.secondary,
+                onChanged: (value) => ref
+                    .read(todoListProvider.notifier)
+                    .toggle(todoList[index][0]),
+                activeColor: palette.surface,
+                checkColor: palette.secondary,
               ),
               title: Text(
                 todoList[index][1],
                 overflow: TextOverflow.ellipsis,
                 maxLines: 3,
                 style: TextStyle(
-                  color: Theme.of(context).colorScheme.onPrimary,
+                  color: palette.onPrimary,
                   fontSize: 16,
                   decoration: todoList[index][2]
                       ? TextDecoration.lineThrough
                       : TextDecoration.none,
                   decorationThickness: 2,
-                  decorationColor: Theme.of(context).colorScheme.onPrimary,
+                  decorationColor: palette.onPrimary,
                 ),
               ),
             ),
           ),
-          onReorder: onReorder,
+          onReorder: (oldIndex, newIndex) =>
+              ref.read(todoListProvider.notifier).onReorder(oldIndex, newIndex),
         ),
       ),
       child: const Center(

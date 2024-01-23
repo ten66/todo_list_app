@@ -15,22 +15,24 @@ class CustomListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final palette = Theme.of(context).colorScheme;
+
     return ListTile(
       title: Text(
         title,
         style: TextStyle(
           fontSize: 16,
-          color: Theme.of(context).colorScheme.onPrimary,
+          color: palette.onPrimary,
         ),
       ),
       leading: Icon(
         icon,
-        color: Theme.of(context).colorScheme.onPrimary,
+        color: palette.onPrimary,
       ),
       trailing: Icon(
         CupertinoIcons.forward,
         size: 18,
-        color: Theme.of(context).colorScheme.onPrimary,
+        color: palette.onPrimary,
       ),
       onTap: url != '' ? () => launchUrl(Uri.parse(url)) : () {},
     );
